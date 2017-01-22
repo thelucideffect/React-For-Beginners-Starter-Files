@@ -9,22 +9,11 @@ import Inventory from '../components/Inventory';
 import Fish from '../components/Fish';
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.addFish = this.addFish.bind(this);
-    this.updateFish = this.updateFish.bind(this);
-    this.removeFish = this.removeFish.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
-    this.addToOrder = this.addToOrder.bind(this);
-    this.removeFromOrder = this.removeFromOrder.bind(this);
-
-    this.state = {
-      fishes: {},
-      order: {},
-    };
-  }
-
+  state = {
+    fishes: {},
+    order: {},
+  };
+  
   // lifecycle hooks
   componentWillMount() {
     // runs right before the <App> is rendered
@@ -52,7 +41,7 @@ class App extends React.Component {
   }
 
   // local methods
-  addFish(fish) {
+  addFish = (fish) => {
     // take a copy of state
     let fishes = {...this.state.fishes};
 
@@ -64,35 +53,35 @@ class App extends React.Component {
     this.setState({ fishes });
   }
 
-  updateFish(key, updatedFish) {
+  updateFish = (key, updatedFish) => {
     const fishes = {...this.state.fishes};
     fishes[key] = updatedFish;
     this.setState({ fishes });
   }
 
-  removeFish(key) {
+  removeFish = (key) => {
     let fishes = {...this.state.fishes};
     fishes[key] = null;
     this.setState({ fishes });
-  }
+  };
 
-  loadSamples() {
+  loadSamples = () => {
     this.setState({
       fishes: sampleFishes,
     })
-  }
+  };
 
-  addToOrder(key) {
+  addToOrder = (key) => {
     let order = {...this.state.order};
     order[key] = order[key] + 1 || 1;
     this.setState({ order });
-  }
+  };
 
-  removeFromOrder(key) {
+  removeFromOrder = (key) => {
     let order = {...this.state.order};
     delete order[key];
     this.setState({ order });
-  }
+  };
 
   render() {
     return (
